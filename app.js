@@ -11,11 +11,24 @@
     })
  );
  app.use(express.json());
+
+ //get users data
  app.get('/users', (req,res) => {
     controller.getUsers(users => {
         res.send(users);
     })
+ });
+
+
+ //get UserById data
+ app.get('/user', (req,res) => {
+    const id=req.query.id;
+    controller.getUserById(id, user =>{
+        res.send(user);
+    } )
+
  })
+
 
  module.exports = app;
    

@@ -16,7 +16,7 @@ const getUsers = (cb) => {
 
 const getUserById = (id,cb) => {
     const user = users.find(user => user.id == id);
-    cb(users);
+    cb(user);
 
 }
  //EXPORT CONTROLL FUNCTION
