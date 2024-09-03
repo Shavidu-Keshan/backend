@@ -14,11 +14,31 @@
 
  //get users data
  app.get('/users', (req,res) => {
-    controller.getUsers(users => {
+    controller.getUsers((req,res,next) => {
         res.send(users);
     })
  });
+//create user
+ app.post('/createuser', (req,res) => {
+    controller.addUser(req.body,(callback) =>{
+        res.send();
+    })
+ })
 
+ //update user
+
+ app.put('/updateuser', (req,res) => {
+    controller.updateUser(req.body,(callback) =>{
+        res.send(callback);
+    })
+ })
+
+ //delete
+ app.delete('/deleteeuser', (req,res) => {
+    controller.deleteUserUser(req.body,(callback) =>{
+        res.send();
+    })
+ })
 
  //get UserById data
  app.get('/user', (req,res) => {
