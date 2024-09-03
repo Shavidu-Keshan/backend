@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 
 app.use(cors());
 app.use(express.json());
-const uri = 'mongodb+srv://skeshan:KE1120#@cluster0.c6nznra.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const uri = 'mongodb+srv://skeshan:KE1120%23@cluster0.c6nznra.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
 
 const connect = async () => {
     try{
@@ -23,5 +24,9 @@ const connect = async () => {
 connect()
 
 const server = app.listen(port,host,() =>{
-    console.log(`Node server is listening to ${server.address().port}`)
+    console.log(`Node server is listening to ${port}`);
+
+});
+server.on('error', (error) => {
+    console.error('Server Error:', error);
 });

@@ -1,24 +1,24 @@
-const users = [
-    {
-        id: 1,
-        name : "prasad"
-    },
-    {
-        id: 2,
-        name: "prasadi"
-    }
-];
+const { response } = require('./app');
+const User = require('./Model')
 
-const getUsers = (cb) => {
-    cb(users);
+const getUsers = (req,res,nwxt) =>{
+    User.find()
+    .then(response =>{
+        res.json({resonse})
+    })
+    .catch( error => {
+        res.json({error : error})
+    });
+    
+};
+
+const addUser = (req,res,next) => {
+    const user= new User ({
+        id : req.body.id,
+        name : req.body.name,
+    })
 }
 
-
-const getUserById = (id,cb) => {
-    const user = users.find(user => user.id == id);
-    cb(user);
-
-}
  //EXPORT CONTROLL FUNCTION
  exports.getUsers =getUsers;
  exports.getUserById = getUserById;
