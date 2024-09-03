@@ -34,7 +34,7 @@
  })
 
  //delete
- app.delete('/deleteeuser', (req,res) => {
+ app.delete('/deleteuser', (req,res) => {
     controller.deleteUserUser(req.body,(callback) =>{
         res.send();
     })

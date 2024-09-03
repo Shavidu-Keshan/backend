@@ -1,5 +1,5 @@
 const { response } = require('./app');
-const User = require('./Model')
+const User = require('./Model');
 
 const getUsers = (req,res,nwxt) =>{
     User.find()
