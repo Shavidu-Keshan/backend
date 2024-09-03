@@ -37,6 +37,19 @@ const updateUser = (req,res,next) => {
     });
 }
 
+const deleteUser = (req,res,next) => {
+    const id  = req.body.id;
+    User.deleteOne ({id : id})
+    .then(response =>{
+        res.json({resonse})
+    })
+    .catch( error => {
+        res.json({error})
+    });
+}
+
  //EXPORT CONTROLL FUNCTION
  exports.getUsers =getUsers;
- exports.getUserById = getUserById;
+ exports.addUser = addUser;
+ exports.updateUser = updateUser;
+ exports.deleteUser = deleteUser;
