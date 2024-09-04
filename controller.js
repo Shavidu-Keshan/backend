@@ -1,10 +1,10 @@
 const { response } = require('./app');
 const User = require('./Model');
 
-const getUsers = (req,res,nwxt) =>{
+const getUsers = (req,res,next) =>{
     User.find()
     .then(response =>{
-        res.json({resonse})
+        res.json({response})
     })
     .catch( error => {
         res.json({error})
@@ -19,7 +19,7 @@ const addUser = (req,res,next) => {
     });
     user.save()
         .then(response =>{
-            res.json({resonse})
+            res.json({response})
         })
         .catch( error => {
             res.json({error})
@@ -28,9 +28,9 @@ const addUser = (req,res,next) => {
 
 const updateUser = (req,res,next) => {
     const {id,name} = req.body;
-    User.updateUser({id:id},{$set: {name:name}})
+    User.updateOne({ id: id }, { $set: { name: name } })
     .then(response =>{
-        res.json({resonse})
+        res.json({response})
     })
     .catch( error => {
         res.json({error})
@@ -41,12 +41,21 @@ const deleteUser = (req,res,next) => {
     const id  = req.body.id;
     User.deleteOne ({id : id})
     .then(response =>{
-        res.json({resonse})
+        res.json({response})
     })
     .catch( error => {
         res.json({error})
     });
-}
+    
+};const getUserById = (id, callback) => {
+    User.findById(id, (err, user) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, user);
+    });
+};
+
 
  //EXPORT CONTROLL FUNCTION
  exports.getUsers =getUsers;

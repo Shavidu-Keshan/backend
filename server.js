@@ -1,32 +1,31 @@
-const express = require('express');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const router = require("./router");
 const app = express();
-const cors = require('cors');
 
-const port = 3001;
-const host = '127.0.0.1';
-const mongoose = require('mongoose');
-const router = require('./router')
+const port = 3002;
+const host = 'localhost';
+
 app.use(cors());
 app.use(express.json());
-const uri = 'mongodb+srv://skeshan:KE1120%23@cluster0.c6nznra.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
+const uri =
+  "mongodb+srv://skeshan:KE1120@cluster0.c6nznra.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 const connect = async () => {
-    try{
-        await mongoose.connect(uri);
-        console.log('coneect to mongodb')
-    }catch(error)
-    {
-        console.log('Mongodb Error: ', error);
-    }
-}
+  try {
+    await mongoose.connect(uri);
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.log("MongoDB Error: ", error);
+  }
+};
 
-connect()
+connect();
 
-const server = app.listen(port,host,() =>{
-    console.log(`Node server is listening to ${port}`);
-
+const server = app.listen(port, host, () => {
+  console.log(`Node server is listening on ${server.address().port}`);
 });
-server.on('error', (error) => {
-    console.error('Server Error:', error);
-});
+
+app.use('/api',router);
