@@ -47,14 +47,8 @@ const deleteUser = (req,res,next) => {
         res.json({error})
     });
     
-};const getUserById = (id, callback) => {
-    User.findById(id, (err, user) => {
-        if (err) {
-            return callback(err, null);
-        }
-        callback(null, user);
-    });
 };
+
 
 
  //EXPORT CONTROLL FUNCTION

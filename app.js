@@ -2,6 +2,7 @@
  const app = express();
  const cors = require('cors');
  const controller = require('./controller');
+ const router = require('./router'); 
 
  app.use(cors());
  app.use(
@@ -11,6 +12,8 @@
     })
  );
  app.use(express.json());
+
+
 
  //get users data
  app.get('/users', (req,res) => {
@@ -22,7 +25,7 @@
  app.post('/createuser', (req,res) => {
     controller.addUser(req.body,(callback) =>{
         res.send();
-    })
+    });
  })
 
  //update user
@@ -35,7 +38,7 @@
 
  //delete
  app.delete('/deleteuser', (req,res) => {
-    controller.deleteUserUser(req.body,(callback) =>{
+    controller.deleteUser(req.body,(callback) =>{
         res.send();
     })
  })
@@ -50,5 +53,6 @@
  })
 
 
+ app.use('/api', router);
  module.exports = app;
    
